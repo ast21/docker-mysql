@@ -1,17 +1,16 @@
 version: '3'
 services:
-  pgsql:
+  mysql:
     user: "${CONTAINER_USER}:${CONTAINER_USER}"
-    image: postgres:${VERSION}
+    image: mysql:${VERSION}
     volumes:
-      - ./pgsql:/var/lib/postgresql/data
+      - ./mysql:/var/lib/mysql
     environment:
-      PGDATA: /var/lib/postgresql/data/data
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     networks:
       - databases
+    restart: always
 
 networks:
   databases:
